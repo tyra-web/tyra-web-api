@@ -1,0 +1,19 @@
+jobs:
+  build_and_test:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:14.2.0 # the primary container, where your job's commands are run
+    environment:
+      - NODE_ENV: development
+    steps:
+      - checkout # check out the code in the project directory
+      - run: # install packages and run tests
+          command: |
+            npm install
+            npm run test:unit
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build_and_test
