@@ -1,0 +1,35 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Ignore cache org files
+*.org~
+
+
+# Inore txt files
+*.txt
+
+node_modules/
+dist/
+coverage
+
+/tests/e2e/reports/
+selenium-debug.log
+chromedriver.log
+geckodriver.log
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+
+# server created files
+uploads/
