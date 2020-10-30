@@ -17,6 +17,12 @@
 # Tyra Web API
 NodeJS/Express API
 
+- [x] Calendar.
+- [x] Clients and Pets.
+- [ ] Medical Records.
+- [x] Staff Access.
+- [ ] Inventory.
+
 ## Dependencies
 See ```package.json```
 
