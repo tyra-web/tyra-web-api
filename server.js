@@ -19,6 +19,7 @@ DB.on('error', (error) => console.error(error));
 DB.once('open', () => console.log('Connected to database!'));
 
 /* Defining routes */
+const CONFIG_ROUTER = require('./routes/config-file');
 const USER_ROUTER = require('./routes/user');
 const BREED_ROUTER = require('./routes/breed');
 const CLIENT_ROUTER = require('./routes/client');
@@ -43,6 +44,7 @@ APP.use(EXPRESS.static('uploads', { etag: false }));
 APP.use(FILE_UPLOAD({ createParentPath: true }));
 
 /* Using routes */
+APP.use(process.env.TYRAWEB_ROUTE_CONFIG, CONFIG_ROUTER);
 APP.use(process.env.TYRAWEB_ROUTE_USERS, USER_ROUTER);
 APP.use(process.env.TYRAWEB_ROUTE_BREED, BREED_ROUTER);
 APP.use(process.env.TYRAWEB_ROUTE_CLIENTS, CLIENT_ROUTER);
