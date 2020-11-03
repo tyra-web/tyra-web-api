@@ -66,8 +66,8 @@ Create MongoDB [backups](https://www.tutorialspoint.com/mongodb/mongodb_create_b
 | ACCESS_TOKEN_SECRET | random string |
 | TYRAWEB_ROUTE_USERS | /users |
 | TYRAWEB_ROUTE_BREED | /breeds |
-| TYRAWEB_ROUTE_PETS | /clients |
-| TYRAWEB_ROTUE_CLIENTS | /pets |
+| TYRAWEB_ROUTE_PETS | /pets |
+| TYRAWEB_ROUTE_CLIENTS | /clients |
 | TYRAWEB_ROUTE_SERVICES | /services |
 | TYRAWEB_ROUTE_DAY_SCHEDULES | /dayschedules |
 
