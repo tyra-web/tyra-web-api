@@ -30,12 +30,14 @@ function CheckConfigFile(){
 	};
 
 	try{
-		if(!fs.existsSync(CONFIG_FILE))
-			fs.writeSync(CONFIG_FILE, INITIAL_SETUP);
+		if(!fs.existsSync(CONFIG_FILE)){
+			const STR_INITIAL_SETUP = JSON.stringify(INITIAL_SETUP);
+			fs.writeFileSync(CONFIG_FILE, STR_INITIAL_SETUP);
+		}
 
 		return true;
 	}catch(err){
-		console.error(err);
+		console.log(err);
 		return false;
 	}
 };
