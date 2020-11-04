@@ -4,8 +4,40 @@ const fs = require('fs');
  *
  * The administrator would want to have the vet info stored. */
 exports.CreateConfigFile = (req, res) => {
-	if(CheckConfigFile())
-		res.sendStatus(201);
+	const CONFIG_FILE = 'config.json';
+	var setup = {};
+
+	if(CheckConfigFile()){
+		fs.readFile(CONFIG_FILE, (err, data) => {
+			if(err)
+				return res.status(406).json(err);
+
+			/* Success */
+			setup = JSON.parse(data);
+
+			/* Update setup object */
+			setup.vetName = req.body.vetName;
+			setup.vetAddress.street = req.body.street;
+			setup.vetAddress.number = req.body.number;
+			setup.vetAddress.intNumber = req.body.intNumber;
+			setup.vetAddress.zipCode = req.body.zipCode;
+			setup.vetAddress.stateOrProvince = req.body.stateOfProvince;
+			setup.vetAddress.country = req.body.country;
+			setup.vetLogo = req.body.vetLogo;
+			setup.vetHeadOfMedics.name = req.body.name;
+			setup.vetHeadOfMedics.code = req.body.code;
+
+			const STR_SETUP = JSON.stringify(setup);
+
+			fs.writeFile(CONFIG_FILE, STR_SETUP, err => {
+				if(err)
+					return res.status(406).json(err);
+
+				/* Success */
+				res.sendStatus(201);
+			});
+		});
+	}
 };
 
 /* Helper function to check whether or not the configuration
@@ -15,9 +47,10 @@ function CheckConfigFile(){
 	const CONFIG_FILE = 'config.json';
 	const INITIAL_SETUP = {
 		"vetName": "",
-		"vetAddres": {
+		"vetAddress": {
 			"street": "",
 			"number": 0,
+			"intNumber": 0,
 			"zipCode": 0,
 			"stateOrProvince": "",
 			"country": ""
