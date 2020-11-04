@@ -40,6 +40,27 @@ exports.CreateConfigFile = (req, res) => {
 	}
 };
 
+/* Get Config File
+ *
+ * So the administrator can get the more updated version. */
+exports.GetConfigFile = (req, res) => {
+	const CONFIG_FILE = 'config.json';
+	var setup = {};
+
+	if(CheckConfigFile()){
+		fs.readFile(CONFIG_FILE, (err, data) => {
+			if(err)
+				return res.status(406).json(err);
+
+			/* Success */
+			setup = JSON.parse(data);
+			res.status(200).json(setup);
+		});
+	}else{
+		res.sendStatus(404);
+	}
+};
+
 /* Helper function to check whether or not the configuration
  * file exists in the file system. Return false if there is any
  * error. */
