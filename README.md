@@ -64,10 +64,11 @@ Create MongoDB [backups](https://www.tutorialspoint.com/mongodb/mongodb_create_b
 | ---- | ----- |
 | MONGODB_TYRAWEB_TEST | mongodb://host:port/tyra-web-test |
 | ACCESS_TOKEN_SECRET | random string |
+| TYRAWEB_ROUTE_CONFIG | /config |
 | TYRAWEB_ROUTE_USERS | /users |
 | TYRAWEB_ROUTE_BREED | /breeds |
-| TYRAWEB_ROUTE_PETS | /clients |
-| TYRAWEB_ROTUE_CLIENTS | /pets |
+| TYRAWEB_ROUTE_PETS | /pets |
+| TYRAWEB_ROUTE_CLIENTS | /clients |
 | TYRAWEB_ROUTE_SERVICES | /services |
 | TYRAWEB_ROUTE_DAY_SCHEDULES | /dayschedules |
 

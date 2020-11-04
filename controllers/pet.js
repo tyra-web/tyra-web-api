@@ -76,7 +76,7 @@ function CheckPetPicturesFolder(){
 	const PET_PICTURES_FOLDER = 'uploads/pet-pictures';
 
 	try{
-		if(!fs.existsSync(PET_PICTURES_FOLDER));
+		if(!fs.existsSync(PET_PICTURES_FOLDER))
 			fs.mkdirSync(PET_PICTURES_FOLDER);
 
 		return true;
