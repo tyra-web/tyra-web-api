@@ -56,7 +56,28 @@ mongo
 node server/populatedb.js
 ```
 
-Create MongoDB [backups](https://www.tutorialspoint.com/mongodb/mongodb_create_backup.htm).
+Create MongoDB
+[backups](https://www.tutorialspoint.com/mongodb/mongodb_create_backup.htm).
+
+### Project setup
+```
+npm install
+```
+
+### For development
+```
+npm run dev:start
+```
+
+### For production
+```
+npm run start
+```
+
+### Run your unit tests
+```
+npm run test:unit
+```
 
 ### List of Environment Variables
 ### ```.env```
