@@ -85,6 +85,7 @@ npm run test:unit
 | ---- | ----- |
 | MONGODB_TYRAWEB_TEST | mongodb://host:port/tyra-web-test |
 | ACCESS_TOKEN_SECRET | random string |
+| PORT | Number above 1024 |
 | TYRAWEB_ROUTE_CONFIG | /config |
 | TYRAWEB_ROUTE_USERS | /users |
 | TYRAWEB_ROUTE_BREED | /breeds |
@@ -92,6 +93,10 @@ npm run test:unit
 | TYRAWEB_ROUTE_CLIENTS | /clients |
 | TYRAWEB_ROUTE_SERVICES | /services |
 | TYRAWEB_ROUTE_DAY_SCHEDULES | /dayschedules |
+
+## Production
+If you want to start using this software in a production environment go to our
+[Production Guide]().
 
 ## Contributing
 If you find this project usefull for your professional life, consider
