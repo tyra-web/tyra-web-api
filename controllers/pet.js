@@ -11,9 +11,6 @@ const moment = require('moment');
 exports.CreatePet = (req, res, next) => {
 	const pet = new PET({
 		name: req.body.petName,
-		birthdate: req.body.petBirthdate,
-		age: req.body.petAge,
-		weight: req.body.petWeight,
 		breed: req.body.petBreed,
 		femaleOrMale: req.body.petFemaleOrMale,
 	}).save((err, pet) => {

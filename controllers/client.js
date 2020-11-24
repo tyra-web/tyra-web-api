@@ -9,13 +9,6 @@ const ADDRESS = require('../models/address.js');
  * Here we get the pet previously created and use it to
  * populate that attribute of the client. */
 exports.CreateClient = (req, res, next) => {
-	const address = new ADDRESS({
-		street: req.body.street,
-		number: req.body.number,
-		intNumber: req.body.intNumber,
-		postalCode: req.body.postalCode
-	});
-
 	var pets = [];
 	pets.push(res.locals.pet._id);
 
@@ -23,7 +16,6 @@ exports.CreateClient = (req, res, next) => {
 		name: req.body.name,
 		phone: req.body.phone,
 		pets: pets,
-		address: address
 	}).save((err, client) => {
 		if(err)
 			return next(err);
