@@ -8,8 +8,8 @@ var PetSchema = new Schema({
 	birthdate: { type: Date },
 	age: { type: Number },
 	weight: { type: Number },
-	breed: { type: BREED },
-	femaleOrMale: { type: String },
+	breed: { type: BREED, required: true },
+	femaleOrMale: { type: String, required: true },
 	owner: { type: MONGOOSE.ObjectId, required: false },
 	vaccinationRecord: { type: Array, required: false, defaul: [] },
 	medialRecord: { type: Array, required: false, default: [] }
