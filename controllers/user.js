@@ -16,7 +16,9 @@ exports.GetUser = (req, res) => {
 		res.status(200).json({
 			msg: 'User Exists',
 			username: user.username,
-			type: user.type
+			type: user.type,
+			fullName: user.fullName,
+			branchOffice: user.branchOffice
 		});
 	});
 };
