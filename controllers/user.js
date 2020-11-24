@@ -1,14 +1,11 @@
-const BCRYPTJS = require('bcryptjs');
-const JWT = require('jsonwebtoken');
-const USER = require('../models/user.js');
-const TYPE = require('../models/type.js');
-
-const MEDIC = new TYPE({ name: 'medic' });
-const ADMIN = new TYPE({ name: 'admin' });
+const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/user.js');
+const Type = require('../models/type.js');
 
 /* Find USER by ID to keep it logged in */
 exports.GetUser = (req, res) => {
-	USER.findById(req.query.id).exec((err, user) => {
+	User.findById(req.query.id).exec((err, user) => {
 		if(err)
 			return res.status(401).json(err);
 
@@ -29,16 +26,16 @@ exports.Login = (req, res) => {
 	const USERNAME = req.query.username;
 	const PASSWORD = req.query.password;
 
-	USER.findOne({ username: USERNAME }).then(user => {
+	User.findOne({ username: USERNAME }).then(user => {
 		if(!user)
 			return res.status(404).json({ msg: "User does't exists" });
 
-		BCRYPTJS.compare(PASSWORD, user.password, (err, data) => {
+		bcryptjs.compare(PASSWORD, user.password, (err, data) => {
 			if(err)
 				throw err;
 
 			if(data){
-				const ACCESS_TOKEN = JWT.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET)
+				const ACCESS_TOKEN = jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET)
 
 				res.status(200).json({
 					msg: 'LogIn Success',
@@ -58,16 +55,18 @@ exports.Login = (req, res) => {
 
 /* Create User */
 exports.Signup = (req, res) => {
-	BCRYPTJS.hash(req.body.password, 10, (err, hashed_password) => {
+	bcryptjs.hash(req.body.password, 10, (err, hashed_password) => {
 		if(err)
 			return res.status(406).json(err);
 
-		const MY_TYPE = new TYPE({ name: req.body.type });
+		const MY_TYPE = new Type({ name: req.body.type });
 
-		const user = new USER({
+		const user = new User({
 			username: req.body.username,
 			password: hashed_password,
-			type: MY_TYPE
+			type: MY_TYPE,
+			fullName: req.body.fullName,
+			branchOffice: req.body.branchOffice
 		}).save(err => {
 			if(err)
 				return res.status(406).json(err);
@@ -80,18 +79,20 @@ exports.Signup = (req, res) => {
 
 /* Update User */
 exports.Update = (req, res) => {
-	BCRYPTJS.hash(req.body.password, 10, (err, hashed_password) => {
+	bcryptjs.hash(req.body.password, 10, (err, hashed_password) => {
 		if(err)
 			return res.status(406).json(err);
 
 		/* Success */
-		const MY_TYPE = new TYPE({ name: req.body.type });
+		const MY_TYPE = new Type({ name: req.body.type });
 
-		USER.findByIdAndUpdate(req.body.id, {
+		User.findByIdAndUpdate(req.body.id, {
 			_id: req.body.id,
 			username: req.body.username,
 			password: hashed_password,
-			type: MY_TYPE
+			type: MY_TYPE,
+			fullName: req.body.fullName,
+			branchOffice: req.body.branchOffice
 		}, err => {
 			if(err)
 				return res.status(406).json(err);
@@ -104,7 +105,7 @@ exports.Update = (req, res) => {
 
 /* Get all Users */
 exports.GetUsers = (req, res, next) => {
-	USER.find()
+	User.find()
 		.populate('user')
 		.exec((err, users) => {
 			if(err)
@@ -120,7 +121,7 @@ exports.Delete = (req, res) => {
 	if(req.body.type === 'admin')
 		return res.status(406).json({ msg: "Can't remove admin user" });
 
-	USER.findByIdAndRemove(req.body.id, (err) => {
+	User.findByIdAndRemove(req.body.id, (err) => {
 		if(err)
 			return res.status(406).json(err);
 
