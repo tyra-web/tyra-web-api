@@ -17,7 +17,7 @@
     "mockingoose": "^2.13.2",
     "mongodb-memory-server": "^6.9.2",
     "nodemon": "^2.0.4",
-    "supertest": "^4.0.2"
+    "supertest": "^6.0.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
